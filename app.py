@@ -238,6 +238,22 @@ button[data-baseweb="tab"][aria-selected="true"] {
     font-size: 0.8rem;
     font-weight: 600;
 }
+
+/* ---- Mobile Responsiveness ---- */
+@media (max-width: 768px) {
+    .hero-banner {
+        padding: 24px 20px;
+    }
+    .hero-title {
+        font-size: 1.6rem;
+    }
+    div[data-testid="metric-container"] {
+        padding: 16px;
+    }
+    div[data-testid="metric-container"] [data-testid="metric-value"] {
+        font-size: 1.6rem !important;
+    }
+}
 </style>
 """, unsafe_allow_html=True)
 
