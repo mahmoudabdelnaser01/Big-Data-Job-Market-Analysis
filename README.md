@@ -1,47 +1,124 @@
-# Job Market Analysis (Big Data Pipeline)
+# 📊 Big Data Job Market Analytics Platform
 
-An end-to-end Big Data project that ingests, cleans, and analyzes a large dataset of job postings using MongoDB Atlas (Aggregation Framework & Map-Reduce logic), with an interactive Dashboard built in Streamlit.
+![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)
+![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green.svg)
+![Plotly](https://img.shields.io/badge/Plotly-Charts-orange.svg)
 
-## 🚀 Features
-- **Data Ingestion & Cleaning:** Handled via Jupyter Notebook (`notebooke.ipynb`) utilizing PyMongo.
-- **Advanced Aggregations:** Complex MongoDB pipelines for extracting metrics (Salaries, Geographic distributions, Work types).
-- **Map-Reduce Fallback Logic:** Native Map-Reduce logic implemented as JS functions with Aggregation pipeline equivalents (due to Atlas M0 tier constraints).
-- **Interactive UI:** Streamlit-powered dashboard (`app.py`) featuring Plotly charts, CRUD operations, and advanced filtering.
+An **End-to-End Big Data Engineering & Analytics** project designed to ingest, process, and visualize massive datasets of job postings. This project leverages the power of **MongoDB Atlas** for NoSQL data storage and complex Aggregation Pipelines (implementing classic Map-Reduce concepts), all wrapped in an interactive, premium **Streamlit** dashboard.
+
+---
+
+## 🎯 Project Overview
+With the job market becoming increasingly data-driven, understanding salary trends, high-demand skills, and geographical distributions is critical. This project ingests over 30,000+ job postings, cleanses the raw data using Pandas in a Jupyter Notebook, and streams it into a cloud-hosted MongoDB Atlas cluster. The data is then dynamically queried and visualized in a real-time web application.
+
+> **🎓 Academic Context:** This project was developed as a comprehensive final project for the **Big Data** course. It serves as a practical application of theoretical Big Data paradigms (such as Map-Reduce, Data Pipelines, and NoSQL Aggregation) on a real-world dataset to extract meaningful business intelligence.
+
+---
+
+## 🏗️ Architecture & Pipeline
+1. **Data Source:** Raw CSV files containing job postings, skills, and company data.
+2. **Data Processing (`notebooke.ipynb`):** Data cleaning, deduplication, formatting, and batch insertion into MongoDB using `PyMongo`.
+3. **Data Storage:** Cloud-hosted NoSQL database (**MongoDB Atlas**).
+4. **Data Analytics (`app.py`):** Execution of complex Aggregation Pipelines and pseudo-Map-Reduce logic.
+5. **Visualization:** A multi-page Streamlit web application featuring advanced Plotly charts and metrics.
+
+---
+
+## 🚀 Key Features
+
+### 1. 📈 Real-Time KPIs & Dashboard
+- Live tracking of total jobs, high-paying roles (+$100k), entry-level positions, and active companies.
+- Quick snapshot visualizations of Top Work Types and Geographic Distributions.
+
+### 2. 📊 Deep Analytics Engine
+- **Geographic & Work Type:** Treemaps and Funnel charts detailing job density across states and remote opportunities.
+- **Salary Intelligence:** Scatter plots, Bar charts, and Box-Plot Overlaid Histograms analyzing salary distributions across different categories.
+- **Skills Analysis:** Bubble charts and progress bars highlighting the most in-demand technical skills.
+- **Company Insights:** Pie charts and horizontal bars showing the top hiring companies in the market.
+
+### 3. 🧠 Map-Reduce & Aggregation Logic
+- Dedicated module demonstrating classic Big Data **Map-Reduce** logic.
+- Displays raw JavaScript Map and Reduce functions alongside their execution results via MongoDB's Aggregation Framework (adapted for modern Atlas clusters).
+
+### 4. 🔍 Intelligent Search Engine
+- Multi-criteria search allowing users to filter by Job Title, Location, Work Type, and Salary Ranges.
+- Dynamic data tables and metric summaries generated instantly based on query results.
+
+### 5. ⚙️ Full CRUD Administration
+- **Create:** Insert new job postings with full data validation (e.g., Min/Max salary checks, Unique ID constraints).
+- **Read:** Raw Document Viewer to inspect JSON payloads directly from the database.
+- **Update:** Modify salaries, categories, and job statuses dynamically.
+- **Delete:** Support for both Hard Deletes (permanent removal) and Soft Deletes (flagging records for audit purposes).
+
+---
+
+## 🗂️ Project Structure
+
+```text
+Big-Data-Job-Market-Analysis/
+│
+├── app.py                  # Main Streamlit Dashboard application
+├── notebooke.ipynb         # Jupyter Notebook for data ingestion and cleaning
+├── requirements.txt        # Python dependencies
+├── .env                    # Environment variables (MongoDB connection string)
+├── .gitignore              # Git ignore file (excludes datasets and secrets)
+├── README.md               # Project documentation
+│
+└── [Dataset Folders]       # (Ignored in Git, download separately)
+    ├── companies/
+    ├── jobs/
+    ├── mappings/
+    └── postings/
+```
+
+---
 
 ## 📦 Getting the Dataset
-The dataset for this project is quite large and is **not included** in this repository. 
-To run this project locally, you must first download the dataset (e.g., from Kaggle) and place the CSV files in the corresponding directories at the root of the project:
+Due to its large size, the raw dataset is **not included** in this repository. 
+To run this project locally, you must first download the dataset from Kaggle:
+
+👉 **[LinkedIn Job Postings (2023) - Kaggle Dataset](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings)**
+
+After downloading, extract the archive and place the CSV folders directly into the root of this project:
 - `companies/`
 - `jobs/`
 - `mappings/`
 - `postings/`
 
-*(Make sure to update the file paths in the notebook if your folder structure differs).*
+*(Ensure the folder names exactly match the paths defined in `notebooke.ipynb`)*.
 
-## 🛠️ How to Run Locally
+---
 
-### 1. Setup the Environment
-Clone the repository and install the required dependencies:
+## 🛠️ Installation & Setup
+
+### 1. Clone the Repository
 ```bash
 git clone https://github.com/YOUR_USERNAME/Big-Data-Job-Market-Analysis.git
 cd Big-Data-Job-Market-Analysis
+```
+
+### 2. Install Dependencies
+Create a virtual environment (optional but recommended) and install the required packages:
+```bash
 pip install -r requirements.txt
 ```
 
-### 2. Configure MongoDB
-Create a `.env` file in the root directory and add your MongoDB Atlas connection string:
+### 3. Configure the Database
+Create a `.env` file in the root directory and add your MongoDB Atlas connection URI:
 ```env
 MONGO_URI="mongodb+srv://<username>:<password>@cluster.mongodb.net/?retryWrites=true&w=majority"
 ```
 
-### 3. Ingest Data (Jupyter Notebook)
-Run the `notebooke.ipynb` file cell-by-cell. This notebook will:
-- Connect to your MongoDB cluster.
-- Load the CSV files from the dataset folders.
-- Clean the data and insert it into MongoDB.
+### 4. Ingest the Data
+Open and run the `notebooke.ipynb` file cell-by-cell in your preferred Jupyter environment (VSCode, JupyterLab). This will parse the local CSV files and populate your cloud database.
 
-### 4. Run the Streamlit Dashboard
-Once the database is populated, launch the dashboard:
+### 5. Launch the Dashboard
+Start the Streamlit application:
 ```bash
 streamlit run app.py
 ```
+The dashboard will open automatically in your browser at `http://localhost:8501`.
+
+---
+*Built by Quantum Cortex Team - Big Data Engineering.*
