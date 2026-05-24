@@ -379,7 +379,7 @@ def get_mapreduce_results():
 # 5. SIDEBAR
 # =====================================================================
 with st.sidebar:
-    st.image(r"C:\Users\Mahmoud\.gemini\antigravity-ide\brain\afc1cce0-ff63-406a-9068-38acadfdf1c1\job_market_analysis_logo_1779578513688.png", use_container_width=True)
+    st.image("logo.png", use_container_width=True)
 
     st.markdown("###  Navigation")
     page = st.radio(
